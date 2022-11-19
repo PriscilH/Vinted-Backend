@@ -28,6 +28,10 @@ const userRoutes = require("./routes/user");
 app.use(userRoutes);
 const offerRoutes = require("./routes/offer");
 app.use(offerRoutes);
+
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome on my server" });
+});
       
 app.all("*", (req, res) => {
     try {
