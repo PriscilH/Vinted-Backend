@@ -53,7 +53,7 @@ router.post("/offer/publish", isAuthenticated, fileUpload(), async(req, res) => 
 
 router.get("/offers", async (req, res) => {
   try {
-    const limit = 5;
+    const limit = 20;
     
     const filters = {};
     if (req.query.title) {
