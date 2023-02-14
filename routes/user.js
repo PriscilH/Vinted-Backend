@@ -3,11 +3,12 @@ const router = express.Router();
 const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const base64 = require("crypto-js/enc-base64");
+const fileUpload = require("express-fileupload");
 
 const User = require("../models/User");
 
 
-router.post("/user/signup", async (req, res) => {
+router.post("/user/signup", fileUpload(), async (req, res) => {
   try {
     
     const { username, email, password, newsletter } = req.body;
@@ -18,6 +19,7 @@ router.post("/user/signup", async (req, res) => {
         const generatedToken = uid2(16);
         const generatedSalt = uid2(12);
         const generatedHash = SHA256(password + generatedSalt).toString(base64);
+
         const newUser = new User({
           email: email,
           account: {
@@ -28,9 +30,11 @@ router.post("/user/signup", async (req, res) => {
           hash: generatedHash,
           salt: generatedSalt,
         });
+
         await newUser.save();
         res.status(201).json({
           _id: newUser._id,
+          email: newUser.email,
           token: newUser.token,
           account: {
             username: newUser.account.username,
