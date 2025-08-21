@@ -23,6 +23,7 @@ Backend du projet **Vinted Clone**, une API REST construite avec **Node.js** et 
 
 ## 📂 Structure du projet
 
+```bash
 Vinted-Backend/
 │── index.js # Point d’entrée du serveur
 │── package.json # Dépendances et scripts
@@ -30,7 +31,7 @@ Vinted-Backend/
 │── /routes # Routes API (auth, offers, payment…)
 │── /models # Schémas Mongoose
 │── /middlewares # Middlewares (authentification, gestion erreurs…)
-
+```
 
 ## ⚙️ Installation & démarrage
 
